@@ -28,19 +28,23 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Auto Explorer'),
       ),
-      body: const Column(
-        children: [
-          Icon(
-            Icons.directions_car,
-            size: 80,
-          ),
-          Text(
-            'Bienvenido a Auto Explorer',
-          ),
-          Text(
-            'Descubre algunos autos destacados',
-          ),
-        ],
+      body: const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.directions_car,
+              size: 80,
+              color: Colors.blueGrey,
+            ),
+            Text(
+              'Bienvenido a Auto Explorer',
+            ),
+            Text(
+              'Descubre algunos autos destacados',
+            ),
+          ],
+        ),
       ),
     );
   }
