@@ -28,20 +28,55 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Auto Explorer'),
       ),
-      body: const Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.directions_car,
-              size: 80,
+              size: 70,
               color: Colors.blueGrey,
             ),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'Bienvenido a Auto Explorer',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            Text(
+            const SizedBox(height: 5),
+            const Text(
               'Descubre algunos autos destacados',
+            ),
+            const SizedBox(height: 20),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.directions_car),
+                title: const Text('Toyota Supra'),
+                subtitle: const Text('Auto deportivo'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.directions_car),
+                title: const Text('Ford Mustang'),
+                subtitle: const Text('Muscle car'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.directions_car),
+                title: const Text('Nissan GT-R'),
+                subtitle: const Text('Deportivo japonés'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.directions_car),
+                title: const Text('Chevrolet Corvette'),
+                subtitle: const Text('Deportivo americano'),
+              ),
             ),
           ],
         ),
