@@ -19,8 +19,21 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool mostrarInformacion = false;
+
+  void mostrarAutoDestacado() {
+    setState(() {
+      mostrarInformacion = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,50 +47,99 @@ class HomePage extends StatelessWidget {
           children: [
             const Icon(
               Icons.directions_car,
-              size: 70,
+              size: 60,
               color: Colors.blueGrey,
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'Bienvenido a Auto Explorer',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
             ),
             const SizedBox(height: 5),
             const Text(
+              'Bienvenido a Auto Explorer',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Text(
               'Descubre algunos autos destacados',
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 20),
-            Card(
+            const SizedBox(height: 10),
+
+            const Card(
               child: ListTile(
-                leading: const Icon(Icons.directions_car),
-                title: const Text('Toyota Supra'),
-                subtitle: const Text('Auto deportivo'),
+                leading: Icon(Icons.directions_car),
+                title: Text('Toyota Supra'),
+                subtitle: Text('Auto deportivo'),
               ),
             ),
-            Card(
+
+            const Card(
               child: ListTile(
-                leading: const Icon(Icons.directions_car),
-                title: const Text('Ford Mustang'),
-                subtitle: const Text('Muscle car'),
+                leading: Icon(Icons.directions_car),
+                title: Text('Ford Mustang'),
+                subtitle: Text('Muscle car'),
               ),
             ),
-            Card(
+
+            const Card(
               child: ListTile(
-                leading: const Icon(Icons.directions_car),
-                title: const Text('Nissan GT-R'),
-                subtitle: const Text('Deportivo japonés'),
+                leading: Icon(Icons.directions_car),
+                title: Text('Nissan GT-R'),
+                subtitle: Text('Deportivo japonés'),
               ),
             ),
-            Card(
+
+            const Card(
               child: ListTile(
-                leading: const Icon(Icons.directions_car),
-                title: const Text('Chevrolet Corvette'),
-                subtitle: const Text('Deportivo americano'),
+                leading: Icon(Icons.directions_car),
+                title: Text('Chevrolet Corvette'),
+                subtitle: Text('Deportivo americano'),
               ),
             ),
+
+            const SizedBox(height: 10),
+
+            ElevatedButton(
+              onPressed: mostrarAutoDestacado,
+              child: const Text('Ver auto destacado'),
+            ),
+
+            const SizedBox(height: 10),
+
+            if (!mostrarInformacion)
+              const Text(
+                'Presiona el botón para ver el auto destacado',
+                textAlign: TextAlign.center,
+              ),
+
+            if (mostrarInformacion)
+              const Card(
+                child: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Auto destacado: Nissan GT-R',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Text('Tipo: Deportivo japonés'),
+                      Text('Motor: 3.8 L V6 Twin Turbo'),
+                      Text('Cilindrada: 3,799 cc'),
+                      Text('Potencia: 565 HP'),
+                      Text(
+                        'Transmisión: Automática de doble embrague, 6 velocidades',
+                        textAlign: TextAlign.center,
+                      ),
+                      Text('Tracción: AWD'),
+                      Text('Combustible: Gasolina'),
+                    ],
+                  ),
+                ),
+              ),
           ],
         ),
       ),
