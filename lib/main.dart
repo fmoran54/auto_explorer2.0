@@ -40,10 +40,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         title: Text(
           'Auto Explorer',
           style: GoogleFonts.montserrat(
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
       ),
@@ -56,6 +58,7 @@ class _HomePageState extends State<HomePage> {
               size: 60,
               color: Colors.blueGrey,
             ),
+
             const SizedBox(height: 5),
 
             Text(
@@ -75,32 +78,48 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 10),
 
             const Card(
+              elevation: 3,
               child: ListTile(
-                leading: Icon(Icons.directions_car),
+                leading: Icon(
+                  Icons.directions_car,
+                  color: Colors.blueGrey,
+                ),
                 title: Text('Toyota Supra'),
                 subtitle: Text('Auto deportivo'),
               ),
             ),
 
             const Card(
+              elevation: 3,
               child: ListTile(
-                leading: Icon(Icons.directions_car),
+                leading: Icon(
+                  Icons.directions_car,
+                  color: Colors.blueGrey,
+                ),
                 title: Text('Ford Mustang'),
                 subtitle: Text('Muscle car'),
               ),
             ),
 
             const Card(
+              elevation: 3,
               child: ListTile(
-                leading: Icon(Icons.directions_car),
+                leading: Icon(
+                  Icons.directions_car,
+                  color: Colors.blueGrey,
+                ),
                 title: Text('Nissan GT-R'),
                 subtitle: Text('Deportivo japonés'),
               ),
             ),
 
             const Card(
+              elevation: 3,
               child: ListTile(
-                leading: Icon(Icons.directions_car),
+                leading: Icon(
+                  Icons.directions_car,
+                  color: Colors.blueGrey,
+                ),
                 title: Text('Chevrolet Corvette'),
                 subtitle: Text('Deportivo americano'),
               ),
@@ -109,6 +128,10 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 10),
 
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueGrey,
+                foregroundColor: Colors.white,
+              ),
               onPressed: mostrarAutoDestacado,
               child: const Text('Ver auto destacado'),
             ),
@@ -123,6 +146,7 @@ class _HomePageState extends State<HomePage> {
 
             if (mostrarInformacion)
               const Card(
+                elevation: 3,
                 child: Padding(
                   padding: EdgeInsets.all(12),
                   child: Column(
@@ -134,7 +158,9 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 17,
                         ),
                       ),
+
                       SizedBox(height: 8),
+
                       Text('Tipo: Deportivo japonés'),
                       Text('Motor: 3.8 L V6 Twin Turbo'),
                       Text('Cilindrada: 3,799 cc'),
