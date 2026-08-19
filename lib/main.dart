@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,7 +40,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Auto Explorer'),
+        title: Text(
+          'Auto Explorer',
+          style: GoogleFonts.montserrat(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -51,18 +57,21 @@ class _HomePageState extends State<HomePage> {
               color: Colors.blueGrey,
             ),
             const SizedBox(height: 5),
-            const Text(
+
+            Text(
               'Bienvenido a Auto Explorer',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
+
             const Text(
               'Descubre algunos autos destacados',
               textAlign: TextAlign.center,
             ),
+
             const SizedBox(height: 10),
 
             const Card(
