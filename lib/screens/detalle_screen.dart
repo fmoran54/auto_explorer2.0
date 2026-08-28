@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../data/favoritos_data.dart';
 import '../models/vehiculo.dart';
@@ -45,6 +46,25 @@ class _DetalleScreenState extends State<DetalleScreen> {
         duration: const Duration(seconds: 2),
       ),
     );
+  }
+
+  Future<void> abrirSitioOficial() async {
+    final Uri enlace = Uri.parse(widget.vehiculo.sitioWeb);
+
+    final bool seAbrio = await launchUrl(
+      enlace,
+      mode: LaunchMode.externalApplication,
+    );
+
+    if (!seAbrio && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'No fue posible abrir el sitio oficial',
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -171,6 +191,15 @@ class _DetalleScreenState extends State<DetalleScreen> {
                           ? 'Quitar de favoritos'
                           : 'Agregar a favoritos',
                     ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed: abrirSitioOficial,
+                    icon: const Icon(Icons.open_in_new),
+                    label: const Text('Visitar sitio oficial'),
                   ),
                 ),
               ],
