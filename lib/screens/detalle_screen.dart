@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../data/favoritos_data.dart';
 import '../models/vehiculo.dart';
 
-class DetalleScreen extends StatelessWidget {
+class DetalleScreen extends StatefulWidget {
   final Vehiculo vehiculo;
 
   const DetalleScreen({
@@ -11,10 +12,60 @@ class DetalleScreen extends StatelessWidget {
   });
 
   @override
+  State<DetalleScreen> createState() => _DetalleScreenState();
+}
+
+class _DetalleScreenState extends State<DetalleScreen> {
+  bool get esFavorito {
+    return vehiculosFavoritos.any(
+      (vehiculo) => vehiculo.id == widget.vehiculo.id,
+    );
+  }
+
+  void cambiarFavorito() {
+    final estabaEnFavoritos = esFavorito;
+
+    setState(() {
+      if (estabaEnFavoritos) {
+        vehiculosFavoritos.removeWhere(
+          (vehiculo) => vehiculo.id == widget.vehiculo.id,
+        );
+      } else {
+        vehiculosFavoritos.add(widget.vehiculo);
+      }
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          estabaEnFavoritos
+              ? '${widget.vehiculo.nombre} fue eliminado de favoritos'
+              : '${widget.vehiculo.nombre} fue agregado a favoritos',
+        ),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final vehiculo = widget.vehiculo;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(vehiculo.nombre),
+        actions: [
+          IconButton(
+            tooltip: esFavorito
+                ? 'Eliminar de favoritos'
+                : 'Agregar a favoritos',
+            onPressed: cambiarFavorito,
+            icon: Icon(
+              esFavorito ? Icons.favorite : Icons.favorite_border,
+              color: esFavorito ? Colors.redAccent : Colors.white,
+            ),
+          ),
+        ],
       ),
       body: ListView(
         children: [
@@ -109,17 +160,17 @@ class DetalleScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton.icon(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            '${vehiculo.nombre} será agregado a favoritos próximamente',
-                          ),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.favorite_border),
-                    label: const Text('Agregar a favoritos'),
+                    onPressed: cambiarFavorito,
+                    icon: Icon(
+                      esFavorito
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                    ),
+                    label: Text(
+                      esFavorito
+                          ? 'Quitar de favoritos'
+                          : 'Agregar a favoritos',
+                    ),
                   ),
                 ),
               ],
