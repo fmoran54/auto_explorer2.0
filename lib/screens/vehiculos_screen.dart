@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/vehiculos_data.dart';
 import '../widgets/vehiculo_card.dart';
+import 'detalle_screen.dart';
 
 class VehiculosScreen extends StatelessWidget {
   const VehiculosScreen({super.key});
@@ -28,12 +29,12 @@ class VehiculosScreen extends StatelessWidget {
             return VehiculoCard(
               vehiculo: vehiculo,
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      'Seleccionaste ${vehiculo.nombre}',
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetalleScreen(
+                      vehiculo: vehiculo,
                     ),
-                    duration: const Duration(seconds: 1),
                   ),
                 );
               },
