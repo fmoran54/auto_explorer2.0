@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'favoritos_screen.dart';
 import 'vehiculos_screen.dart';
 
 class InicioScreen extends StatefulWidget {
@@ -28,11 +29,27 @@ class _InicioScreenState extends State<InicioScreen> {
     );
   }
 
+  void abrirFavoritos() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const FavoritosScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Auto Explorer'),
+        actions: [
+          IconButton(
+            tooltip: 'Mis favoritos',
+            onPressed: abrirFavoritos,
+            icon: const Icon(Icons.favorite),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -108,6 +125,15 @@ class _InicioScreenState extends State<InicioScreen> {
                 onPressed: abrirCatalogo,
                 icon: const Icon(Icons.grid_view),
                 label: const Text('Explorar catálogo'),
+              ),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: abrirFavoritos,
+                icon: const Icon(Icons.favorite),
+                label: const Text('Ver mis favoritos'),
               ),
             ),
             const SizedBox(height: 8),
