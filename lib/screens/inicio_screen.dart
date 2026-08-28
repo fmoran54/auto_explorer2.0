@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'vehiculos_screen.dart';
+
 class InicioScreen extends StatefulWidget {
   const InicioScreen({super.key});
 
@@ -13,8 +15,17 @@ class _InicioScreenState extends State<InicioScreen> {
 
   void mostrarAutoDestacado() {
     setState(() {
-      mostrarInformacion = true;
+      mostrarInformacion = !mostrarInformacion;
     });
+  }
+
+  void abrirCatalogo() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const VehiculosScreen(),
+      ),
+    );
   }
 
   @override
@@ -25,7 +36,7 @@ class _InicioScreenState extends State<InicioScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
+        child: ListView(
           children: [
             const Icon(
               Icons.directions_car,
@@ -91,9 +102,30 @@ class _InicioScreenState extends State<InicioScreen> {
               ),
             ),
             const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: mostrarAutoDestacado,
-              child: const Text('Ver auto destacado'),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: abrirCatalogo,
+                icon: const Icon(Icons.grid_view),
+                label: const Text('Explorar catálogo'),
+              ),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: mostrarAutoDestacado,
+                icon: Icon(
+                  mostrarInformacion
+                      ? Icons.visibility_off
+                      : Icons.visibility,
+                ),
+                label: Text(
+                  mostrarInformacion
+                      ? 'Ocultar auto destacado'
+                      : 'Ver auto destacado',
+                ),
+              ),
             ),
             const SizedBox(height: 10),
             if (!mostrarInformacion)
