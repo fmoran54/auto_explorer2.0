@@ -55,10 +55,16 @@ class _InicioScreenState extends State<InicioScreen> {
         padding: const EdgeInsets.all(16),
         child: ListView(
           children: [
-            const Icon(
-              Icons.directions_car,
-              size: 60,
-              color: Colors.blueGrey,
+            Center(
+              child: Container(
+                width: 130,
+                height: 130,
+                padding: const EdgeInsets.all(6),
+                child: Image.asset(
+                  'assets/images/logo_auto_explorer.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
             ),
             const SizedBox(height: 5),
             Text(
