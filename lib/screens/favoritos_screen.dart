@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../data/favoritos_data.dart';
 import '../models/vehiculo.dart';
+import '../providers/favoritos_provider.dart';
 import 'detalle_screen.dart';
 
-class FavoritosScreen extends StatefulWidget {
+class FavoritosScreen extends StatelessWidget {
   const FavoritosScreen({super.key});
 
-  @override
-  State<FavoritosScreen> createState() => _FavoritosScreenState();
-}
-
-class _FavoritosScreenState extends State<FavoritosScreen> {
-  void eliminarFavorito(Vehiculo vehiculo) {
-    setState(() {
-      vehiculosFavoritos.removeWhere(
-        (favorito) => favorito.id == vehiculo.id,
-      );
-    });
+  void eliminarFavorito(
+    BuildContext context,
+    FavoritosProvider favoritosProvider,
+    Vehiculo vehiculo,
+  ) {
+    favoritosProvider.eliminarFavorito(vehiculo);
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -34,8 +30,13 @@ class _FavoritosScreenState extends State<FavoritosScreen> {
       appBar: AppBar(
         title: const Text('Mis favoritos'),
       ),
-      body: vehiculosFavoritos.isEmpty
-          ? const Center(
+      body: Consumer<FavoritosProvider>(
+        builder: (context, favoritosProvider, child) {
+          final vehiculosFavoritos =
+              favoritosProvider.vehiculosFavoritos;
+
+          if (vehiculosFavoritos.isEmpty) {
+            return const Center(
               child: Padding(
                 padding: EdgeInsets.all(24),
                 child: Column(
@@ -63,55 +64,61 @@ class _FavoritosScreenState extends State<FavoritosScreen> {
                   ],
                 ),
               ),
-            )
-          : ListView.builder(
-              padding: const EdgeInsets.all(12),
-              itemCount: vehiculosFavoritos.length,
-              itemBuilder: (context, index) {
-                final vehiculo = vehiculosFavoritos[index];
+            );
+          }
 
-                return Card(
-                  elevation: 3,
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.blueGrey.shade100,
-                      backgroundImage: NetworkImage(
-                        vehiculo.imagenUrl,
-                      ),
+          return ListView.builder(
+            padding: const EdgeInsets.all(12),
+            itemCount: vehiculosFavoritos.length,
+            itemBuilder: (context, index) {
+              final vehiculo = vehiculosFavoritos[index];
+
+              return Card(
+                elevation: 3,
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.blueGrey.shade100,
+                    backgroundImage: NetworkImage(
+                      vehiculo.imagenUrl,
                     ),
-                    title: Text(
-                      vehiculo.nombre,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                  title: Text(
+                    vehiculo.nombre,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
                     ),
-                    subtitle: Text(vehiculo.tipo),
-                    trailing: IconButton(
-                      tooltip: 'Eliminar de favoritos',
-                      icon: const Icon(
-                        Icons.delete_outline,
-                        color: Colors.redAccent,
-                      ),
-                      onPressed: () {
-                        eliminarFavorito(vehiculo);
-                      },
+                  ),
+                  subtitle: Text(vehiculo.tipo),
+                  trailing: IconButton(
+                    tooltip: 'Eliminar de favoritos',
+                    icon: const Icon(
+                      Icons.delete_outline,
+                      color: Colors.redAccent,
                     ),
-                    onTap: () {
-                      Navigator.push(
+                    onPressed: () {
+                      eliminarFavorito(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => DetalleScreen(
-                            vehiculo: vehiculo,
-                          ),
-                        ),
-                      ).then((_) {
-                        setState(() {});
-                      });
+                        favoritosProvider,
+                        vehiculo,
+                      );
                     },
                   ),
-                );
-              },
-            ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetalleScreen(
+                          vehiculo: vehiculo,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
