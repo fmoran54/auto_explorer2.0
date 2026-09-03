@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../models/vehiculo.dart';
 import '../providers/favoritos_provider.dart';
+import '../widgets/caracteristica_vehiculo.dart';
 
 class DetalleScreen extends StatefulWidget {
   final Vehiculo vehiculo;
@@ -133,44 +134,34 @@ class _DetalleScreenState extends State<DetalleScreen> {
                       elevation: 3,
                       child: Column(
                         children: [
-                          ListTile(
-                            leading: const CircleAvatar(
-                              child: Icon(Icons.settings),
-                            ),
-                            title: const Text('Motor'),
-                            subtitle: Text(vehiculo.motor),
+                          CaracteristicaVehiculo(
+                            icono: Icons.settings,
+                            titulo: 'Motor',
+                            valor: vehiculo.motor,
                           ),
                           const Divider(height: 1),
-                          ListTile(
-                            leading: const CircleAvatar(
-                              child: Icon(Icons.speed),
-                            ),
-                            title: const Text('Potencia'),
-                            subtitle: Text(vehiculo.potencia),
+                          CaracteristicaVehiculo(
+                            icono: Icons.speed,
+                            titulo: 'Potencia',
+                            valor: vehiculo.potencia,
                           ),
                           const Divider(height: 1),
-                          ListTile(
-                            leading: const CircleAvatar(
-                              child: Icon(Icons.swap_horiz),
-                            ),
-                            title: const Text('Transmisión'),
-                            subtitle: Text(vehiculo.transmision),
+                          CaracteristicaVehiculo(
+                            icono: Icons.swap_horiz,
+                            titulo: 'Transmisión',
+                            valor: vehiculo.transmision,
                           ),
                           const Divider(height: 1),
-                          ListTile(
-                            leading: const CircleAvatar(
-                              child: Icon(Icons.route),
-                            ),
-                            title: const Text('Tracción'),
-                            subtitle: Text(vehiculo.traccion),
+                          CaracteristicaVehiculo(
+                            icono: Icons.route,
+                            titulo: 'Tracción',
+                            valor: vehiculo.traccion,
                           ),
                           const Divider(height: 1),
-                          ListTile(
-                            leading: const CircleAvatar(
-                              child: Icon(Icons.local_gas_station),
-                            ),
-                            title: const Text('Combustible'),
-                            subtitle: Text(vehiculo.combustible),
+                          CaracteristicaVehiculo(
+                            icono: Icons.local_gas_station,
+                            titulo: 'Combustible',
+                            valor: vehiculo.combustible,
                           ),
                         ],
                       ),
