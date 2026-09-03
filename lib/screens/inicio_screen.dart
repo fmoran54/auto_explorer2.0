@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/favoritos_provider.dart';
 import 'favoritos_screen.dart';
 import 'vehiculos_screen.dart';
 
@@ -44,10 +46,21 @@ class _InicioScreenState extends State<InicioScreen> {
       appBar: AppBar(
         title: const Text('Auto Explorer'),
         actions: [
-          IconButton(
-            tooltip: 'Mis favoritos',
-            onPressed: abrirFavoritos,
-            icon: const Icon(Icons.favorite),
+          Consumer<FavoritosProvider>(
+            builder: (context, favoritosProvider, child) {
+              final cantidad =
+                  favoritosProvider.cantidadFavoritos;
+
+              return IconButton(
+                tooltip: 'Mis favoritos',
+                onPressed: abrirFavoritos,
+                icon: Badge(
+                  isLabelVisible: cantidad > 0,
+                  label: Text('$cantidad'),
+                  child: const Icon(Icons.favorite),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -134,13 +147,24 @@ class _InicioScreenState extends State<InicioScreen> {
               ),
             ),
             const SizedBox(height: 8),
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton.icon(
-                onPressed: abrirFavoritos,
-                icon: const Icon(Icons.favorite),
-                label: const Text('Ver mis favoritos'),
-              ),
+            Consumer<FavoritosProvider>(
+              builder: (context, favoritosProvider, child) {
+                final cantidad =
+                    favoritosProvider.cantidadFavoritos;
+
+                return SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed: abrirFavoritos,
+                    icon: const Icon(Icons.favorite),
+                    label: Text(
+                      cantidad == 0
+                          ? 'Ver mis favoritos'
+                          : 'Ver mis favoritos ($cantidad)',
+                    ),
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 8),
             SizedBox(
