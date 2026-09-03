@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../models/vehiculo.dart';
 import '../providers/favoritos_provider.dart';
+import '../widgets/mensaje_lista_vacia.dart';
 import 'detalle_screen.dart';
 
 class FavoritosScreen extends StatelessWidget {
@@ -36,34 +37,11 @@ class FavoritosScreen extends StatelessWidget {
               favoritosProvider.vehiculosFavoritos;
 
           if (vehiculosFavoritos.isEmpty) {
-            return const Center(
-              child: Padding(
-                padding: EdgeInsets.all(24),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.favorite_border,
-                      size: 80,
-                      color: Colors.blueGrey,
-                    ),
-                    SizedBox(height: 16),
-                    Text(
-                      'Todavía no tienes vehículos favoritos',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      'Agrega vehículos desde la pantalla de detalles.',
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
+            return const MensajeListaVacia(
+              icono: Icons.favorite_border,
+              titulo: 'Todavía no tienes vehículos favoritos',
+              mensaje:
+                  'Agrega vehículos desde la pantalla de detalles.',
             );
           }
 
