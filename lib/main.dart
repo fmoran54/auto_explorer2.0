@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'providers/favoritos_provider.dart';
 import 'screens/inicio_screen.dart';
 import 'theme/app_theme.dart';
 
 void main() {
-  runApp(const AutoExplorerApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => FavoritosProvider(),
+      child: const AutoExplorerApp(),
+    ),
+  );
 }
 
 class AutoExplorerApp extends StatelessWidget {
