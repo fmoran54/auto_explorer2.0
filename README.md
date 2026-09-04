@@ -6,6 +6,7 @@ Auto Explorer es una aplicación desarrollada en Flutter que permite explorar un
 
 El proyecto fue realizado para la asignatura Programación 4 y corresponde a la continuación de la aplicación desarrollada durante la Actividad Integradora 1.
 
+
 ---
 
 # Actividad Integradora 1
@@ -15,6 +16,7 @@ El proyecto fue realizado para la asignatura Programación 4 y corresponde a la 
 En la Actividad Integradora 1 se desarrolló la primera versión de Auto Explorer. Esta versión permitía visualizar una lista de autos destacados y mostrar información adicional del Nissan GT-R mediante un botón.
 
 El objetivo fue aplicar conceptos básicos de Flutter, utilizar widgets, incorporar una interacción con `setState()`, instalar un paquete externo y publicar el proyecto en GitHub.
+
 
 ---
 
@@ -29,6 +31,7 @@ flutter doctor
 El resultado indicó que el entorno se encontraba correctamente configurado.
 
 ![Flutter Doctor](capturas/01_flutter_doctor.png)
+
 
 ---
 
@@ -48,6 +51,7 @@ Antes de realizar modificaciones se ejecutó la aplicación inicial de Flutter p
 
 ![Primera ejecución](capturas/03_primera_ejecucion.png)
 
+
 ---
 
 ## 4. Simulador utilizado
@@ -58,6 +62,7 @@ Después de ejecutar el proyecto, Auto Explorer quedó instalado correctamente e
 
 ![Simulador iOS](capturas/04_simulador_ios.png)
 
+
 ---
 
 ## 5. Desarrollo inicial
@@ -67,6 +72,7 @@ La primera versión fue desarrollada principalmente en el archivo `lib/main.dart
 Durante esta etapa se agregaron widgets para construir la interfaz principal y se implementó una interacción básica mediante un botón.
 
 ![Desarrollo en Visual Studio Code](capturas/05_desarrollo_vscode.png)
+
 
 ---
 
@@ -93,6 +99,7 @@ La aplicación mostró inicialmente los siguientes vehículos:
 
 ![Pantalla principal](capturas/08_pantalla_principal.png)
 
+
 ---
 
 ## 7. Interacción inicial
@@ -104,6 +111,7 @@ Al presionarlo se mostraba información adicional del Nissan GT-R, como motor, c
 La información se actualizaba en pantalla mediante `setState()`.
 
 ![Funcionamiento del botón](capturas/09_funcionamiento_boton.png)
+
 
 ---
 
@@ -123,6 +131,7 @@ La dependencia quedó registrada en el archivo `pubspec.yaml`.
 
 El paquete se utilizó para aplicar la fuente Montserrat y mejorar la presentación visual de los textos.
 
+
 ---
 
 ## 9. Aplicación ejecutándose
@@ -130,6 +139,7 @@ El paquete se utilizó para aplicar la fuente Montserrat y mejorar la presentaci
 Después de completar la primera versión se ejecutó nuevamente el proyecto para verificar su funcionamiento.
 
 ![Auto Explorer ejecutándose](capturas/10_aplicacion_simulador.png)
+
 
 ---
 
@@ -141,6 +151,7 @@ Durante el desarrollo se realizaron commits para registrar progresivamente los c
 
 ![Repositorio en GitHub](capturas/11_repositorio_github.png)
 
+
 ---
 
 # Actividad Integradora 2
@@ -150,6 +161,7 @@ Durante el desarrollo se realizaron commits para registrar progresivamente los c
 Para la Actividad Integradora 2 se continuó mejorando la aplicación Auto Explorer creada en la actividad anterior.
 
 La aplicación fue ampliada para incorporar una estructura de archivos organizada, cuatro pantallas, navegación mediante `Navigator`, un catálogo visual, selección de favoritos, enlaces externos, imágenes, logotipo y un ícono personalizado.
+
 
 ---
 
@@ -171,6 +183,7 @@ Las principales mejoras incorporadas fueron:
 - Colores y tipografía personalizados.
 - Uso de `setState()` para actualizar información en pantalla.
 
+
 ---
 
 ## 3. Organización del proyecto
@@ -181,19 +194,33 @@ La estructura principal utilizada es la siguiente:
 
 ```text
 lib/
+
 ├── data/
+
 │   └── vehiculos_data.dart
+
 ├── models/
+
 │   └── vehiculo.dart
+
 ├── screens/
+
 │   ├── inicio_screen.dart
+
 │   ├── vehiculos_screen.dart
-│   ├── detalle_vehiculo_screen.dart
+
+│   ├── detalle_screen.dart
+
 │   └── favoritos_screen.dart
+
 ├── theme/
+
 │   └── app_theme.dart
+
 ├── widgets/
+
 │   └── vehiculo_card.dart
+
 └── main.dart
 ```
 
@@ -209,6 +236,7 @@ Cada carpeta tiene una función específica:
 ### Evidencia de la nueva estructura
 
 ![Estructura organizada del proyecto](capturas/12_estructura_actividad_2.png)
+
 
 ---
 
@@ -259,6 +287,7 @@ Si todavía no se han agregado vehículos, se presenta un mensaje informativo. L
 
 ![Pantalla de favoritos](capturas/16_pantalla_favoritos.png)
 
+
 ---
 
 ## 5. Navegación entre pantallas
@@ -271,14 +300,20 @@ Ejemplo de navegación:
 
 ```dart
 Navigator.push(
+
   context,
+
   MaterialPageRoute(
+
     builder: (context) => const VehiculosScreen(),
+
   ),
+
 );
 ```
 
 La flecha de regreso proporcionada por Flutter permite volver a la pantalla anterior.
+
 
 ---
 
@@ -308,6 +343,7 @@ Durante el desarrollo se utilizaron los siguientes widgets:
 
 Estos widgets permiten construir la interfaz, organizar el contenido, mostrar imágenes y crear elementos interactivos.
 
+
 ---
 
 ## 7. Interacciones implementadas
@@ -334,6 +370,7 @@ La pantalla de detalle permite abrir información externa relacionada con el veh
 
 La aplicación utiliza mensajes visuales para informar al usuario sobre determinadas acciones realizadas.
 
+
 ---
 
 ## 8. Funcionalidad con setState()
@@ -344,9 +381,13 @@ En la pantalla de inicio se utiliza una variable booleana para mostrar u ocultar
 
 ```dart
 void mostrarAutoDestacado() {
+
   setState(() {
+
     mostrarInformacion = !mostrarInformacion;
+
   });
+
 }
 ```
 
@@ -358,6 +399,7 @@ También se actualiza el texto y el ícono del botón:
 - **Ocultar auto destacado** cuando la información está visible.
 
 La selección de favoritos también actualiza la interfaz para reflejar los vehículos agregados o eliminados.
+
 
 ---
 
@@ -391,6 +433,7 @@ flutter_launcher_icons: ^0.14.4
 
 ![Paquetes externos](capturas/17_paquetes_externos.png)
 
+
 ---
 
 ## 10. Personalización de la aplicación
@@ -421,6 +464,7 @@ El ícono predeterminado de Flutter fue reemplazado por el logotipo de Auto Expl
 
 ![Ícono de Auto Explorer](capturas/19_launcher_icon.png)
 
+
 ---
 
 ## 11. Ejecución del proyecto
@@ -440,6 +484,7 @@ flutter run
 ```
 
 También se puede ejecutar el proyecto desde Visual Studio Code seleccionando un dispositivo y utilizando la opción **Run and Debug**.
+
 
 ---
 
@@ -466,6 +511,7 @@ Se realizaron como mínimo diez commits, incluyendo avances relacionados con:
 
 ![Historial de commits](capturas/20_historial_commits.png)
 
+
 ---
 
 ## Tecnologías utilizadas
@@ -480,6 +526,7 @@ Se realizaron como mínimo diez commits, incluyendo avances relacionados con:
 - GitHub
 - iOS Simulator
 
+
 ---
 
 ## Repositorio
@@ -488,9 +535,222 @@ El código fuente de Auto Explorer se encuentra publicado en GitHub:
 
 [Repositorio Auto Explorer](https://github.com/fmoran54/auto_explorer2.0)
 
+
 ---
 
 ## Autor
+
+**Freddy Andres Moran Soriano**
+
+Programación 4
+
+
+
+---
+
+# Actividad Integradora 3: Provider y componentes reutilizables
+
+## 1. Continuidad y objetivo
+
+Para esta actividad se continuó mejorando Auto Explorer. El objetivo fue sustituir la lista global utilizada anteriormente para los favoritos por un estado compartido administrado mediante el paquete `provider`.
+
+Esta evolución permite que un cambio realizado desde la pantalla de detalle se refleje automáticamente en la pantalla de favoritos y en el contador de la pantalla de inicio. También se mejoró la organización del código mediante componentes visuales reutilizables.
+
+## 2. Funcionalidades incorporadas
+
+- Administración global de vehículos favoritos mediante Provider.
+- Posibilidad de agregar y eliminar favoritos desde la pantalla de detalle.
+- Actualización automática de la pantalla de favoritos.
+- Contador de favoritos en el `AppBar` y en el botón de la pantalla de inicio.
+- Mensajes de confirmación mediante `SnackBar`.
+- Tres widgets personalizados en archivos independientes.
+- Eliminación de la antigua lista global de favoritos.
+- Conservación de la navegación, el catálogo, las imágenes y los enlaces externos.
+
+## 3. Estructura actual del proyecto
+
+El proyecto se encuentra dividido según la responsabilidad de cada archivo:
+
+```text
+lib/
+├── data/
+│   └── vehiculos_data.dart
+├── models/
+│   └── vehiculo.dart
+├── providers/
+│   └── favoritos_provider.dart
+├── screens/
+│   ├── inicio_screen.dart
+│   ├── vehiculos_screen.dart
+│   ├── detalle_screen.dart
+│   └── favoritos_screen.dart
+├── theme/
+│   └── app_theme.dart
+├── widgets/
+│   ├── vehiculo_card.dart
+│   ├── caracteristica_vehiculo.dart
+│   └── mensaje_lista_vacia.dart
+└── main.dart
+```
+
+- `data`: contiene la lista de vehículos disponibles.
+- `models`: define la clase principal `Vehiculo`.
+- `providers`: concentra el estado y la lógica de favoritos.
+- `screens`: contiene las cuatro pantallas de la aplicación.
+- `theme`: centraliza colores y estilos generales.
+- `widgets`: contiene componentes visuales reutilizables.
+- `main.dart`: inicia la aplicación y registra el Provider.
+
+![Estructura con Provider](capturas/21_estructura_provider.png)
+
+## 4. Provider implementado
+
+El estado compartido se encuentra en `favoritos_provider.dart`. La clase `FavoritosProvider` extiende `ChangeNotifier` y mantiene una lista privada de vehículos favoritos.
+
+Sus responsabilidades principales son:
+
+- Comprobar si un vehículo es favorito.
+- Agregar o quitar un vehículo.
+- Eliminar un vehículo desde la lista de favoritos.
+- Informar la cantidad actual de favoritos.
+- Ejecutar `notifyListeners()` después de cada modificación.
+
+Ejemplo de la notificación de cambios:
+
+```dart
+void alternarFavorito(Vehiculo vehiculo) {
+  if (esFavorito(vehiculo)) {
+    _vehiculosFavoritos.removeWhere(
+      (favorito) => favorito.id == vehiculo.id,
+    );
+  } else {
+    _vehiculosFavoritos.add(vehiculo);
+  }
+
+  notifyListeners();
+}
+```
+
+![Código de FavoritosProvider](capturas/22_codigo_favoritos_provider.png)
+
+## 5. Configuración de ChangeNotifierProvider
+
+El Provider se registra en `main.dart` por encima de `MaterialApp`. De esta manera, todas las pantallas pueden acceder a la misma instancia de `FavoritosProvider`.
+
+```dart
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => FavoritosProvider(),
+      child: const AutoExplorerApp(),
+    ),
+  );
+}
+```
+
+## 6. Uso de Consumer
+
+`Consumer<FavoritosProvider>` se utiliza para escuchar los cambios del estado y reconstruir automáticamente los componentes necesarios.
+
+Se implementó en:
+
+- `DetalleScreen`: cambia el ícono y el texto del botón de favoritos.
+- `FavoritosScreen`: actualiza la lista al agregar o eliminar vehículos.
+- `InicioScreen`: actualiza el contador mostrado junto al corazón.
+
+El flujo de funcionamiento es el siguiente:
+
+1. El usuario agrega un vehículo desde `DetalleScreen`.
+2. `FavoritosProvider` modifica la lista.
+3. `notifyListeners()` comunica el cambio.
+4. Los widgets `Consumer` reciben la notificación.
+5. La lista y el contador se actualizan automáticamente.
+
+![Vehículo agregado con Provider](capturas/23_detalle_favorito_provider.png)
+
+![Contador actualizado en Inicio](capturas/24_contador_favoritos_provider.png)
+
+![Lista actualizada mediante Consumer](capturas/25_favoritos_consumer.png)
+
+## 7. Widgets reutilizables
+
+### VehiculoCard
+
+Representa cada automóvil dentro del catálogo. Recibe un objeto `Vehiculo` y una función `onTap`. Muestra la imagen, el nombre y el tipo de vehículo.
+
+### CaracteristicaVehiculo
+
+Representa una característica técnica mediante un ícono, un título y un valor. Se reutiliza para mostrar motor, potencia, transmisión, tracción y combustible.
+
+### MensajeListaVacia
+
+Presenta un estado vacío configurable mediante un ícono, un título y un mensaje. Se utiliza cuando todavía no existen vehículos favoritos.
+
+![Widgets reutilizables](capturas/26_widgets_reutilizables.png)
+
+## 8. Modelo y manejo de datos
+
+La clase `Vehiculo` representa los datos principales de la aplicación. Incluye identificador, nombre, tipo, motor, potencia, transmisión, tracción, combustible, imagen y sitio web.
+
+El identificador permite que `FavoritosProvider` compare los vehículos y evite elementos duplicados.
+
+## 9. Pantallas y navegación
+
+Auto Explorer conserva cuatro pantallas relacionadas con la temática automotriz:
+
+1. **InicioScreen:** presenta el logotipo, accesos principales, auto destacado y contador de favoritos.
+2. **VehiculosScreen:** muestra el catálogo dinámico mediante `GridView` y `VehiculoCard`.
+3. **DetalleScreen:** muestra las características del automóvil y permite modificar su estado de favorito.
+4. **FavoritosScreen:** muestra o elimina los vehículos seleccionados.
+
+La navegación continúa implementada mediante `Navigator.push()`, `Navigator.pop()` y `MaterialPageRoute`.
+
+## 10. Tecnologías y paquetes
+
+- Flutter y Dart.
+- `provider: ^6.1.5+1` para administrar el estado compartido.
+- `google_fonts` para personalizar la tipografía.
+- `url_launcher` para abrir los sitios oficiales.
+- `flutter_launcher_icons` para generar el ícono de la aplicación.
+- Git y GitHub para control de versiones.
+- Visual Studio Code como entorno de desarrollo.
+- Simulador de iOS para ejecutar y comprobar la aplicación.
+
+## 11. Ejecución del proyecto
+
+Después de clonar o descargar el repositorio, se deben instalar las dependencias:
+
+```bash
+flutter pub get
+```
+
+Para revisar el código:
+
+```bash
+flutter analyze
+```
+
+Para ejecutar la aplicación en un simulador o dispositivo conectado:
+
+```bash
+flutter run
+```
+
+## 12. Control de versiones
+
+La evolución de esta actividad se registró mediante siete commits significativos:
+
+1. `Instalación y configuración inicial de Provider`
+2. `Integración de Provider en la pantalla de detalle`
+3. `Actualización de favoritos mediante Consumer`
+4. `Creación e integración de widgets reutilizables`
+5. `Implementación del contador de favoritos con Provider`
+6. `Creación de componente reutilizable para listas vacías`
+7. `Documentación de Provider y actualización de capturas`
+
+![Historial de commits de Provider](capturas/27_historial_commits_provider.png)
+
+## 13. Autor
 
 **Freddy Andres Moran Soriano**
 
